@@ -1,10 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Terrain de test</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+  <ion-list>
+    <ion-radio-group>
+      <ion-list-header>
+        <ion-label>Thèmes</ion-label>
+      </ion-list-header>
+  
+      <ion-item>
+        <ion-label>Clair</ion-label>
+        <ion-radio slot="start" value="light" checked></ion-radio>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label>Noir</ion-label>
+        <ion-radio slot="start" value="black"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+</ion-list>
 </ion-content>
