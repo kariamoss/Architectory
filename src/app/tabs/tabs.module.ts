@@ -1,3 +1,8 @@
+import { SharedModule } from './../shared/shared.module';
+import { TodoListComponent } from './../shared/components/todo-list/todo-list.component';
+import { WorkersPageModule } from './../workers/workers.module';
+import { SettingsPageModule } from './../settings/settings.module';
+import { ArchitectPageModule } from './../architect/architect.module';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -7,9 +12,6 @@ import { FormsModule } from '@angular/forms';
 import { TabsPageRoutingModule } from './tabs.router.module';
 
 import { TabsPage } from './tabs.page';
-import { ContactPageModule } from '../contact/contact.module';
-import { AboutPageModule } from '../about/about.module';
-import { HomePageModule } from '../home/home.module';
 
 @NgModule({
   imports: [
@@ -17,10 +19,12 @@ import { HomePageModule } from '../home/home.module';
     CommonModule,
     FormsModule,
     TabsPageRoutingModule,
-    HomePageModule,
-    AboutPageModule,
-    ContactPageModule
+    ArchitectPageModule,
+    SettingsPageModule,
+    WorkersPageModule
   ],
-  declarations: [TabsPage]
+  declarations: [
+    TabsPage
+  ]
 })
 export class TabsPageModule {}
