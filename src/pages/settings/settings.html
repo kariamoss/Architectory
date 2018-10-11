@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Terrain de test</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list radio-group>
+    <ion-list-header>
+      <ion-label>Thèmes</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Clair</ion-label>
+      <ion-radio slot="start" value="light" checked></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Noir</ion-label>
+      <ion-radio slot="start" value="black"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <ion-item *ngIf="cordovaAvailable">
+    <p>Luminosité actuelle : {{ light }}</p>
+  </ion-item>
+  <ion-item *ngIf="!cordovaAvailable">
+    <p>Cordova n'est pas supporté</p>
+  </ion-item>
+</ion-content>
