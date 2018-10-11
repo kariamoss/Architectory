@@ -12,16 +12,27 @@
 
     <ion-item>
       <ion-label>Clair</ion-label>
-      <ion-radio slot="start" value="light" checked></ion-radio>
+      <ion-radio slot="start" value="light" checked (click)="changeTheme('')"></ion-radio>
     </ion-item>
 
     <ion-item>
       <ion-label>Noir</ion-label>
-      <ion-radio slot="start" value="black"></ion-radio>
+      <ion-radio slot="start" value="dark" (click)="changeTheme('theme-dark')" ></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Noir ++</ion-label>
+      <ion-radio slot="start" value="black" (click)="changeTheme('theme-black')" ></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Rouge</ion-label>
+      <ion-radio slot="start" value="red" (click)="changeTheme('theme-red')" ></ion-radio>
     </ion-item>
   </ion-list>
   <ion-item *ngIf="cordovaAvailable">
-    <p>Luminosité actuelle : {{ light }}</p>
+    <p *ngIf="light != -1">Luminosité actuelle : {{ light }}</p>
+    <p *ngIf="light == -1">Le capteur ne s'est pas lancé</p>
   </ion-item>
   <ion-item *ngIf="!cordovaAvailable">
     <p>Cordova n'est pas supporté</p>
