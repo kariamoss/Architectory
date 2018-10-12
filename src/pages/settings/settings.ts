@@ -11,7 +11,9 @@ import { AppState } from '../../app/app.global';
 export class SettingsPage {
 
   light = -1;
+  previousLight = -1;
   cordovaAvailable = false;
+  theme: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
      private sensors: Sensors, platform: Platform, public global: AppState) {
@@ -35,13 +37,20 @@ export class SettingsPage {
     setInterval(() => {
       this.sensors.getState().then( (values) => {
         this.light = values[0];
-        if (this.light < 100 && this.light > 40) {
-          this.global.set('theme', 'theme-dark');
-        } else if (this.light <= 40) {
-          this.global.set('theme', 'theme-black');
-        } else {
-          this.global.set('theme', '');
+        if (this.light < this.previousLight - 20 || this.light > this.previousLight + 20) {
+          if (this.light < 100 && this.light > 40) {
+            this.global.set('theme', 'theme-dark');
+            this.theme = 'dark';
+          } else if (this.light <= 40) {
+            this.global.set('theme', 'theme-black');
+            this.theme = 'black';
+          } else {
+            this.global.set('theme', '');
+            this.theme = 'light';
+          }
+          this.previousLight = this.light;
         }
+        
       });
     }, 300);
   }
