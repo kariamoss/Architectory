@@ -1,14 +1,21 @@
 {
   "name": "Architectory",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": {
+    "name" :"Jehan Milleret",
+    "email": "jehanmilleret@gmail.com",
+    "url": "http://www.example.com"
+  },
   "private": true,
   "scripts": {
-    "start": "ionic-app-scripts serve",
+    "dev": "nf start",
+    "start":"ionic-app-scripts serve",
+    "electron dist": "electron .",
+    "ebuild":"npm run build && node_modules/.bin/build",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint"
+    "ionic:build": "ionic-app-scripts build",
+    "ionic:serve": "ionic-app-scripts serve"
   },
   "dependencies": {
     "@angular/animations": "5.2.11",
@@ -43,9 +50,26 @@
   "devDependencies": {
     "@ionic/app-scripts": "3.2.0",
     "@ionic/lab": "1.0.11",
+    "electron": "^3.0.4",
+    "electron-builder": "^20.28.4",
+    "foreman": "^3.0.1",
     "typescript": "~2.6.2"
   },
-  "description": "An Ionic project",
+  "description": "An Architectory project",
+  "main": "electron/electron.js",
+  "config": {
+    "ionic_bundler": "webpack",
+    "ionic_webpack": "./config/webpack.config.js"
+  },
+  "build": {
+    "appId": "com.jehan.architectory",
+    "electronVersion": "1.7.5",
+    "asar":false,
+    "files": [
+      "www/**/*",
+      "electron/*"
+    ]
+  },
   "cordova": {
     "plugins": {
       "cordova-plugin-sensors": {},

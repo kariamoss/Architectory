@@ -13,7 +13,7 @@ export class SettingsPage {
   light = -1;
   previousLight = -1;
   cordovaAvailable = false;
-  theme: any;
+  theme = 'light';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
      private sensors: Sensors, platform: Platform, public global: AppState) {

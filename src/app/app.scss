@@ -17,3 +17,15 @@
 @import '../theme/red.theme';
 @import '../theme/black.theme';
 @import '../theme/dark.theme';
+
+@media screen and (min-width: 500px) {
+    ::-webkit-scrollbar {     
+        background-color: #fff;
+        width: .5em
+    }
+
+    ::-webkit-scrollbar-thumb:window-inactive,
+    ::-webkit-scrollbar-thumb {
+        background:  #383838
+    }
+}

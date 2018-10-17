@@ -67,4 +67,16 @@
     background-color: white !important;
     color: black !important;
   }
+
+  @media screen and (min-width: 500px) {
+    ::-webkit-scrollbar {     
+      background-color: #1c1c1c;
+      width: .5em
+    }
+
+    ::-webkit-scrollbar-thumb:window-inactive,
+    ::-webkit-scrollbar-thumb {
+        background:  #383838
+    }
+  }
 }
