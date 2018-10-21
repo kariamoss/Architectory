@@ -1,3 +1,4 @@
+import { WebsocketService } from './../services/webSocket';
 import { ArchitectPage } from './../pages/architect/architect';
 import { WorkersPage } from './../pages/workers/workers';
 import { SettingsPage } from './../pages/settings/settings';
@@ -13,6 +14,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TodoListComponent } from '../components/todo-list/todo-list';
 import { Sensors } from '@ionic-native/sensors';
+import { HtmlUtilsService } from '../services/htmlUtils';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { Sensors } from '@ionic-native/sensors';
     SplashScreen,
     Sensors,
     AppState,
+    WebsocketService,
+    HtmlUtilsService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

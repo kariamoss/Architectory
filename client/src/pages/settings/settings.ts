@@ -1,3 +1,5 @@
+import { HtmlUtilsService } from './../../services/htmlUtils';
+import { WebsocketService } from './../../services/webSocket';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { Sensors } from '@ionic-native/sensors';
@@ -14,9 +16,12 @@ export class SettingsPage {
   previousLight = -1;
   cordovaAvailable = false;
   theme = 'light';
+  socket: any;
+  pseudo: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-     private sensors: Sensors, platform: Platform, public global: AppState) {
+     private sensors: Sensors, private platform: Platform, public global: AppState,
+     private webSocketService: WebsocketService, private htmlUTilsService: HtmlUtilsService) {
 
     platform.ready().then(() => {
       if (platform.is('cordova')) {
@@ -25,10 +30,39 @@ export class SettingsPage {
         this.cordovaAvailable = true;
       }
     });
+
+    this.socket = webSocketService.getSocket();
+  }
+
+  ngOnInit(): void {
+    this.platform.ready().then((readySource) => {
+
+      if (this.htmlUTilsService.isMobile()){
+        this.pseudo = 'mobile';
+      } else {
+        this.pseudo = 'desktop';
+      }
+      console.log(this.htmlUTilsService.screenWidth);
+      
+      
+      this.socket.emit('newClient', this.pseudo);
+
+      this.socket.on('data', (data) => {
+        console.log('Received : ' + data.task);
+        
+        if (data.task === 'changeTheme') {
+          this.global.set('theme', data.theme);
+          this.theme = data.theme;
+        }
+    }); 
+
+    });
   }
 
   changeTheme(theme) {
     this.global.set('theme', theme);
+    console.log('sending new theme : ');
+    this.socket.emit('data', {pseudo : this.htmlUTilsService.platformToSend(), message: {task: 'changeTheme', theme: theme}});
   }
 
   initSensor() {

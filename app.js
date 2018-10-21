@@ -38,30 +38,50 @@ io.sockets.on('connection', function (socket) {
     //On stock le pseudo et l'id dans la session
     socket.handshake.session.pseudo = pseudo;
     socket.handshake.session.ID = ID;
+    console.log('New connection : ' + pseudo);
 
     users.push({ pseudo: socket.handshake.session.pseudo, id: socket.handshake.session.ID });
 
     socket.handshake.session.save();
     socket.broadcast.emit('updateUsers', {users: users});
+    console.log('Users : ' + getUserNames());
   });
 
   //Envoi de data d'un client à l'autre
   socket.on('data', function (data) {
-    var pseudo = data.ID;
+    var pseudo = data.pseudo;
     var message = data.message;
+    console.log('Sending : ' + data.message.task + " and " + data.message.theme + " to user " + pseudo);
     for (var i = 0; i < users.length; i++) {
       if (users[i].pseudo == pseudo) {
-        socket.to(users[i].id).emit('message', message);
+        socket.to(users[i].id).emit('data', message);
+        console.log("Sended to " + pseudo);
       }
     }
   });
 
   socket.on('disconnect', function (data) {
     socket.handshake.session.save();
+    console.log('User disconnected : ' + data);
+    removeUser(socket.id);
     socket.broadcast.emit('updateUsers', {users: users});
   });
 
 });
+
+function removeUser(id){
+  for(let i=0; i<users.length; i++){
+      if(users[i].id==id) users.splice(i,1);
+  }
+}
+
+function getUserNames() {
+  let res = "";
+  for(let i=0; i<users.length; i++){
+    res += users[i].pseudo + " ";
+  }
+  return res;
+}
 
 process.on('uncaughtException', function (err) {
   // handle the error safely
