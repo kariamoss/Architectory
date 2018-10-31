@@ -1,66 +1,50 @@
 <ion-list>
-  <ion-list-header>
-    <ion-label>Todo-list</ion-label>
-  </ion-list-header>
-
-  <ion-item>
-    <ion-label>Default</ion-label>
-    <ion-checkbox slot="end" checked></ion-checkbox>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Primary</ion-label>
-    <ion-checkbox slot="end" checked color="primary"></ion-checkbox>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Secondary</ion-label>
-    <ion-checkbox slot="end" checked color="secondary"></ion-checkbox>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Tertiary</ion-label>
-    <ion-checkbox slot="end" checked color="tertiary"></ion-checkbox>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Success</ion-label>
-    <ion-checkbox slot="end" checked color="success"></ion-checkbox>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Warning</ion-label>
-    <ion-checkbox slot="end" checked color="warning"></ion-checkbox>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Danger</ion-label>
-    <ion-checkbox slot="end" checked color="danger"></ion-checkbox>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Light</ion-label>
-    <ion-checkbox slot="end" checked color="light"></ion-checkbox>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Medium</ion-label>
-    <ion-checkbox slot="end" checked color="medium"></ion-checkbox>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Dark</ion-label>
-    <ion-checkbox slot="end" checked color="dark"></ion-checkbox>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Unchecked by Default</ion-label>
-    <ion-checkbox slot="end"></ion-checkbox>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Disabled</ion-label>
-    <ion-checkbox slot="end" disabled></ion-checkbox>
-  </ion-item>
-
+  <!-- MOBILE -->
+  <div class="mobile">
+    <ion-list-header>
+      Delete by swipping
+      <button item-end ion-button icon-only clear (click)="addThing()">
+        <ion-icon color="primary" name="add-circle"></ion-icon>
+      </button>
+    </ion-list-header>
+    <ion-item-sliding (ionDrag)="selectingItem(slidingItem)" #slidingItem *ngFor="let todo of todos; let i = index; ">
+      <ion-item #item>
+        {{todo.title}}
+      </ion-item>
+      <ion-item-options icon-start (ionSwipe)="deleteItem(todos, i)">
+        <button color="danger" ion-button expandable (click)="deleteItem(todos, i)">
+          <ion-icon name="arrow-dropleft"></ion-icon>
+          <ion-icon name="trash"></ion-icon>
+        </button>
+        <button color="secondary" ion-button (click)="closeOption()">
+            <ion-icon name="arrow-dropright"></ion-icon>
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </div>
+  <!-- DESKTOP -->
+  <div class="desktop">
+    <ion-list-header>
+      Delete by clicking
+      <button item-end ion-button icon-only clear (click)="addThing()">
+        <ion-icon color="primary" name="add-circle"></ion-icon>
+      </button>
+    </ion-list-header>
+    <ion-item-sliding swipeEnabled="false" #slidingItem *ngFor="let todo of todos; let i = index; ">
+      <ion-item #item>
+        <ion-icon item-start color="danger" name="remove-circle" (click)="openOption(slidingItem, item, $event)"></ion-icon>
+        {{todo.title}}
+      </ion-item>
+      <ion-item-options icon-start>
+        <button color="secondary" ion-button expandable (click)="closeOption()">
+          Cancel
+        </button>
+        <button color="danger" ion-button expandable (click)="deleteItem(todos, i)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </div>
 </ion-list>
