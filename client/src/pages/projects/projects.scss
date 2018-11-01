@@ -1,4 +1,10 @@
 page-projects {
+    @media all and (min-width: 575px) {
+        .mobile {
+            display:none;
+        }
+    }
+    
     ion-content {
         text-align: center;
     }

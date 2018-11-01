@@ -16,6 +16,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TodoListComponent } from '../components/todo-list/todo-list';
 import { Sensors } from '@ionic-native/sensors';
+import { Geolocation } from '@ionic-native/geolocation';
 import { HtmlUtilsService } from '../services/htmlUtils';
 
 @NgModule({
@@ -49,6 +50,7 @@ import { HtmlUtilsService } from '../services/htmlUtils';
     WebsocketService,
     HtmlUtilsService,
     TodoService,
+    Geolocation,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

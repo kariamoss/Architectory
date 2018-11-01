@@ -13,7 +13,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let item of items" (click)="itemTapped($event, item)">
+  <button class="mobile" ion-button full icon-start (click)="localizate()">
+      <ion-icon name="compass"></ion-icon>
+       Utiliser la localisation
+  </button>
+  <ion-card *ngFor="let item of items" (click)="itemTapped(item)">
       <img [src]="item.image" />
       <div class="card-title">{{item.title}}</div>
     </ion-card>

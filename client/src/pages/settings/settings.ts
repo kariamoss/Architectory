@@ -41,9 +41,7 @@ export class SettingsPage {
         this.pseudo = 'mobile';
       } else {
         this.pseudo = 'desktop';
-      }
-      console.log(this.htmlUTilsService.screenWidth);
-      
+      }      
       
       this.socket.emit('newClient', this.pseudo);
 
