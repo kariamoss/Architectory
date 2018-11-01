@@ -1,3 +1,4 @@
+import { TodoService } from './../services/todosService';
 import { WebsocketService } from './../services/webSocket';
 import { ArchitectPage } from './../pages/architect/architect';
 import { WorkersPage } from './../pages/workers/workers';
@@ -44,6 +45,7 @@ import { HtmlUtilsService } from '../services/htmlUtils';
     AppState,
     WebsocketService,
     HtmlUtilsService,
+    TodoService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

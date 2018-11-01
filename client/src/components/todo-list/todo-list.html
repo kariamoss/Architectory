@@ -2,7 +2,7 @@
   <!-- MOBILE -->
   <div class="mobile">
     <ion-list-header>
-      Delete by swipping
+      Supprimer en swippant
       <button item-end ion-button icon-only clear (click)="addThing()">
         <ion-icon color="primary" name="add-circle"></ion-icon>
       </button>
@@ -26,7 +26,7 @@
   <!-- DESKTOP -->
   <div class="desktop">
     <ion-list-header>
-      Delete by clicking
+      Supprimer en cliquant
       <button item-end ion-button icon-only clear (click)="addThing()">
         <ion-icon color="primary" name="add-circle"></ion-icon>
       </button>
@@ -38,11 +38,11 @@
       </ion-item>
       <ion-item-options icon-start>
         <button color="secondary" ion-button expandable (click)="closeOption()">
-          Cancel
+          Annuler
         </button>
         <button color="danger" ion-button expandable (click)="deleteItem(todos, i)">
           <ion-icon name="trash"></ion-icon>
-          Delete
+          Terminé
         </button>
       </ion-item-options>
     </ion-item-sliding>

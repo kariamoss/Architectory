@@ -1,6 +1,8 @@
+import { TodoService } from './../../services/todosService';
 import { HtmlUtilsService } from './../../services/htmlUtils';
 import { Component } from '@angular/core';
 import { ItemSliding, Item } from 'ionic-angular';
+import { Todo } from '../../interfaces/todo';
 
 @Component({
   selector: 'todo-list',
@@ -10,23 +12,13 @@ export class TodoListComponent {
 
   activeItemSliding: ItemSliding = null;
 
-  todos = [
-    {
-      title: 'Faire la toiture',
-    },
-    {
-      title: 'Poser le carrelage',
-    },
-    {
-      title: 'Monter l\'échaffaudage',
-    },
-  ];
+  todos: Todo[] = this.todoService.getTodos();
 
-  constructor(private htmlUtilsService: HtmlUtilsService) {
+  constructor(private htmlUtilsService: HtmlUtilsService, private todoService: TodoService) {
   }
 
   addThing() {
-  	this.todos.push({ title: 'Todo n°' + (this.todos.length + 1) });
+    this.todoService.addTodo();
   }
 
   deleteItem(list, index) {
@@ -34,16 +26,17 @@ export class TodoListComponent {
   }
 
   openOption(itemSlide: ItemSliding, item: Item, event) {
-    // event.stopPropagation();
+    let swipeAmount = 160;
+    if (this.htmlUtilsService.isMobile()){
+      swipeAmount = 75;
+      event.stopPropagation();
+    }
     if (this.activeItemSliding) {
       this.closeOption();
     }
 
     this.activeItemSliding = itemSlide;
-    let swipeAmount = 75;
-    if (!this.htmlUtilsService.isMobile()){
-      swipeAmount = 160;
-    }
+    
     
 
     itemSlide.startSliding(swipeAmount);
