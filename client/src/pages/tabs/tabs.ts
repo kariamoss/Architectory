@@ -1,5 +1,5 @@
+import { ProjectsPage } from './../projects/projects';
 import { WorkersPage } from './../workers/workers';
-import { ArchitectPage } from './../architect/architect';
 import { SettingsPage } from './../settings/settings';
 import { Component } from '@angular/core';
 
@@ -9,8 +9,7 @@ import { Component } from '@angular/core';
 export class TabsPage {
 
   tab1Root = SettingsPage;
-  tab2Root = ArchitectPage;
-  tab3Root = WorkersPage;
+  tab2Root = ProjectsPage;
 
   constructor() {
 

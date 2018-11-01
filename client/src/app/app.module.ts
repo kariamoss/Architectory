@@ -1,3 +1,4 @@
+import { ProjectsPage } from './../pages/projects/projects';
 import { TodoService } from './../services/todosService';
 import { WebsocketService } from './../services/webSocket';
 import { ArchitectPage } from './../pages/architect/architect';
@@ -24,6 +25,7 @@ import { HtmlUtilsService } from '../services/htmlUtils';
     WorkersPage,
     ArchitectPage,
     TodoListComponent,
+    ProjectsPage,
     TabsPage
   ],
   imports: [
@@ -36,7 +38,8 @@ import { HtmlUtilsService } from '../services/htmlUtils';
     SettingsPage,
     WorkersPage,
     ArchitectPage,
-    TabsPage
+    TabsPage,
+    ProjectsPage
   ],
   providers: [
     StatusBar,

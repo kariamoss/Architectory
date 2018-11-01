@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { TodoListComponent } from './todo-list/todo-list';
 @NgModule({
-	declarations: [TodoListComponent],
+	declarations: [
+		TodoListComponent,
+	],
 	imports: [],
-	exports: [TodoListComponent]
+	exports: [
+		TodoListComponent,
+	]
 })
-export class ComponentsModule {}
+export class ComponentsModule { }

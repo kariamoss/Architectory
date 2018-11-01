@@ -14,8 +14,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'architect.html',
 })
 export class ArchitectPage {
+  title: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.title = navParams.get('title');
   }
+
+  goback() {
+    this.navCtrl.pop();
+ }
 
 }

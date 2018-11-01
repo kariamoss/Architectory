@@ -33,7 +33,7 @@
     </ion-list-header>
     <ion-item-sliding swipeEnabled="false" #slidingItem *ngFor="let todo of todos; let i = index; ">
       <ion-item #item>
-        <ion-icon item-start color="danger" name="remove-circle" (click)="openOption(slidingItem, item, $event)"></ion-icon>
+        <ion-icon item-start color="danger" name="trash" (click)="openOption(slidingItem, item, $event)"></ion-icon>
         {{todo.title}}
       </ion-item>
       <ion-item-options icon-start>

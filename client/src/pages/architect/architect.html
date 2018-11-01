@@ -1,6 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Architecte</ion-title>
+    <ion-list>
+      <div style="display: inline;">
+          <button item-end ion-button icon-only clear (click)="goback()">
+              <ion-icon color="primary" name="return-left"></ion-icon>
+          </button>
+          <ion-title>{{ title }}</ion-title>
+      </div>
+      
+    </ion-list>
+    
   </ion-toolbar>
 </ion-header>
 

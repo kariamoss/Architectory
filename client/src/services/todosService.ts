@@ -37,6 +37,17 @@ export class TodoService {
               }
           ]
         },
+        {
+            title: 'Abattre le mur non porteur n°4',
+          description: 'Le mur n\'est pas disponible directement. Il faut donc commencer par dégager l\'accès puis ' +
+          'poser deux linteaux. Un pour le mur non porteur et pour l\'accès. L\'outilage électrique s\'occupera de descendre le mur. ' +
+          'Après cela il faudra changer le premier linceau de place',
+          beginDate: new Date(2018, 11, 25),
+          endDate: new Date(2018, 12, 2),
+          completionPercentage: 100,
+          supposedCompletionPercentage: 100,
+          done: true
+        }
         
       ];
   getTodos() { return this.todos; }

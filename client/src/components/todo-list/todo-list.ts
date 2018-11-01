@@ -36,8 +36,6 @@ export class TodoListComponent {
     }
 
     this.activeItemSliding = itemSlide;
-    
-    
 
     itemSlide.startSliding(swipeAmount);
     itemSlide.moveSliding(swipeAmount);
