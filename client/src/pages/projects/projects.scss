@@ -1,9 +1,4 @@
 page-projects {
-    @media all and (min-width: 575px) {
-        .mobile {
-            display:none;
-        }
-    }
     
     ion-content {
         text-align: center;
@@ -12,8 +7,8 @@ page-projects {
         position: relative;
         display: inline-block;
         text-align: center;
-        max-width: 500px;
-        max-height: 300px;
+        max-width: 400px;
+        max-height: 250px;
     }
     .card-title {
         position: absolute;
@@ -27,14 +22,14 @@ page-projects {
     .card-subtitle {
         font-size: 1.5em;
         position: absolute;
-        top: 62%;
+        top: 67%;
         width: 100%;
         color: #F53D3D;
         text-shadow: 1px 1px 1px #000;
     }
 
-    .disabled,
-    .disabled:active{
+    .disabled {
+        pointer-events: none;
         border: 1px solid #999999;
         background-color: #cccccc;
         color: #666666;

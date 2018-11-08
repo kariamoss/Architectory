@@ -7,13 +7,13 @@
 </ion-header>
 <ion-content>
   <div *ngIf="!useLocalisation && canUseLocalisation">
-    <button class="mobile" ion-button full icon-start (click)="localizate()">
+    <button ion-button full icon-start (click)="localizate()">
         <ion-icon name="pricetag"></ion-icon>
         Filtré par nom
     </button>
   </div>
   <div *ngIf="useLocalisation && canUseLocalisation">
-    <button class="mobile" ion-button full icon-start (click)="sortByName()">
+    <button ion-button full icon-start (click)="sortByName()">
         <ion-icon name="compass"></ion-icon>
         Filtré par proximité
     </button>
@@ -33,6 +33,5 @@
         <ion-icon color="danger" name="alert"></ion-icon>
         {{item.problem}}
       </div>
-      {{ item.distance }}
     </ion-card>
 </ion-content>

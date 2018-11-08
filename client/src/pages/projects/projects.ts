@@ -21,7 +21,7 @@ export class ProjectsPage {
     distance?: number, problem?: string }>;
 
   canUseLocalisation = false;
-  useLocalisation: boolean = true;
+  useLocalisation: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private localisationService: LocalisationService) {
     this.items = [
@@ -72,12 +72,7 @@ export class ProjectsPage {
   }
   ngOnInit() {
     this.canUseLocalisation = this.localisationService.canUseLocalisation;
-    if (!this.canUseLocalisation) {
-      this.sortByName();
-      this.useLocalisation = false;
-    } else {
-      this.sortByDistance();
-    }
+    this.sortByName();
   }
 
   localizate(){

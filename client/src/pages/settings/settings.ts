@@ -1,3 +1,4 @@
+import { LocalisationService } from './../../services/localisationService';
 import { HtmlUtilsService } from './../../services/htmlUtils';
 import { WebsocketService } from './../../services/webSocket';
 import { Component } from '@angular/core';
@@ -31,7 +32,7 @@ export class SettingsPage {
       }
     });
 
-    this.socket = webSocketService.getSocket();
+    // this.socket = webSocketService.getSocket();
   }
 
   ngOnInit(): void {
@@ -60,7 +61,7 @@ export class SettingsPage {
   changeTheme(theme) {
     this.global.set('theme', theme);
     console.log('sending new theme : ');
-    this.socket.emit('data', {pseudo : this.htmlUTilsService.platformToSend(), message: {task: 'changeTheme', theme: theme}});
+    //this.socket.emit('data', {pseudo : this.htmlUTilsService.platformToSend(), message: {task: 'changeTheme', theme: theme}});
   }
 
   initSensor() {
@@ -80,7 +81,7 @@ export class SettingsPage {
             this.global.set('theme', 'theme-black');
             this.theme = 'black';
           } else {
-            this.global.set('theme', '');
+            this.global.set('theme', 'theme-light');
             this.theme = 'light';
           }
           this.previousLight = this.light;

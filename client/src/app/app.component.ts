@@ -15,7 +15,7 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.global.set('theme', '');
+      this.global.set('theme', 'theme-light');
       statusBar.styleLightContent();
       splashScreen.hide();
     });
