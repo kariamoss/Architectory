@@ -1,6 +1,6 @@
 import { TodoService } from './../../services/todosService';
 import { HtmlUtilsService } from './../../services/htmlUtils';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ItemSliding, Item } from 'ionic-angular';
 import { Todo } from '../../interfaces/todo';
 
@@ -10,11 +10,19 @@ import { Todo } from '../../interfaces/todo';
 })
 export class TodoListComponent {
 
+  @Input() title;
   activeItemSliding: ItemSliding = null;
 
   todos: Todo[] = this.todoService.getTodos();
 
   constructor(private htmlUtilsService: HtmlUtilsService, private todoService: TodoService) {
+    
+  }
+
+  ngOnInit() {
+    if (this.title === "Construction Maison en Bois") {
+      this.todoService.addProblem();
+    }
   }
 
   addThing() {
@@ -22,6 +30,9 @@ export class TodoListComponent {
   }
 
   deleteItem(list, index) {
+    if (list[index].problems) {
+      this.todoService.removedProblem();
+    }
     list.splice(index,1);
   }
 

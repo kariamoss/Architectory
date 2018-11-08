@@ -29,7 +29,7 @@
   <ion-card *ngFor="let item of items" (click)="itemTapped(item)">
       <img [src]="item.image" />
       <div class="card-title">{{item.title}}</div>
-      <div class="card-subtitle" *ngIf="item.problem">
+      <div class="card-subtitle" *ngIf="item.problem && !isAlertOver">
         <ion-icon color="danger" name="alert"></ion-icon>
         {{item.problem}}
       </div>

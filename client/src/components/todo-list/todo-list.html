@@ -1,4 +1,5 @@
 <ion-list>
+
   <!-- MOBILE -->
   <div class="mobile">
     <ion-list-header>
@@ -7,9 +8,33 @@
         <ion-icon color="primary" name="add-circle"></ion-icon>
       </button>
     </ion-list-header>
+
+
     <ion-item-sliding (ionDrag)="selectingItem(slidingItem)" #slidingItem *ngFor="let todo of todos; let i = index; ">
-      <ion-item #item>
-        {{todo.title}}
+
+      <ion-item class="item item-md">
+
+
+        <ion-label class="label label-md">
+
+          <ion-icon class="item-end" color="secondary" name="done-all" size="large" *ngIf="todo.done"></ion-icon>
+          <ion-icon class="item-end" name="time" size="large" *ngIf="!todo.done"></ion-icon>
+
+          <div style="display: inline-block">
+            <h2>{{todo.title}}</h2>
+          </div>
+
+          <br *ngIf="todo.problems"/>
+          <ion-icon name="alert" color="danger" *ngIf="todo.problems"></ion-icon>
+          <div style="display: inline-block">
+            <p style="color: red" *ngIf="todo.problems">
+              {{ todo.problems[0].description }}
+            </p>
+          </div>
+          <p>{{ todo.completionPercentage }} % terminé sur {{ todo.supposedCompletionPercentage }} % au planning</p>
+        </ion-label>
+
+
       </ion-item>
       <ion-item-options icon-start (ionSwipe)="deleteItem(todos, i)">
         <button color="danger" ion-button expandable (click)="deleteItem(todos, i)">
@@ -17,12 +42,15 @@
           <ion-icon name="trash"></ion-icon>
         </button>
         <button color="secondary" ion-button (click)="closeOption()">
-            <ion-icon name="arrow-dropright"></ion-icon>
+          <ion-icon name="arrow-dropright"></ion-icon>
           <ion-icon name="close"></ion-icon>
         </button>
       </ion-item-options>
     </ion-item-sliding>
+
   </div>
+
+
   <!-- DESKTOP -->
   <div class="desktop">
     <ion-list-header>
@@ -34,7 +62,26 @@
     <ion-item-sliding swipeEnabled="false" #slidingItem *ngFor="let todo of todos; let i = index; ">
       <ion-item #item>
         <ion-icon item-start color="danger" name="trash" (click)="openOption(slidingItem, item, $event)"></ion-icon>
-        {{todo.title}}
+
+        <ion-label class="label label-md displayAll">
+
+            <ion-icon class="item-end" color="secondary" name="done-all" size="large" *ngIf="todo.done"></ion-icon>
+            <ion-icon class="item-end" name="time" size="large" *ngIf="!todo.done"></ion-icon>
+  
+            <div style="display: inline-block">
+              <h2>{{todo.title}}</h2>
+            </div>
+  
+            <br *ngIf="todo.problems"/>
+            <ion-icon name="alert" color="danger" *ngIf="todo.problems"></ion-icon>
+            <div style="display: inline-block">
+              <p style="color: red" *ngIf="todo.problems">
+                {{ todo.problems[0].description }}
+              </p>
+            </div>
+            <p>{{ todo.completionPercentage }} % terminé sur {{ todo.supposedCompletionPercentage }} % au planning</p>
+            <p style="display: block; overflow:visible;">{{ todo.description }}</p>
+        </ion-label>
       </ion-item>
       <ion-item-options icon-start>
         <button color="secondary" ion-button expandable (click)="closeOption()">

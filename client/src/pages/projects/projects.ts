@@ -1,3 +1,4 @@
+import { TodoService } from './../../services/todosService';
 import { LocalisationService } from './../../services/localisationService';
 import { ArchitectPage } from './../architect/architect';
 import { Component } from '@angular/core';
@@ -22,8 +23,12 @@ export class ProjectsPage {
 
   canUseLocalisation = false;
   useLocalisation: boolean = false;
+  isAlertOver: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private localisationService: LocalisationService) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private localisationService: LocalisationService,
+    private todoService: TodoService) {
     this.items = [
       {
         title: 'Rénovation Ascenseurs Nord Tour Eiffel',
@@ -73,6 +78,10 @@ export class ProjectsPage {
   ngOnInit() {
     this.canUseLocalisation = this.localisationService.canUseLocalisation;
     this.sortByName();
+  }
+
+  ionViewDidEnter() {
+    this.isAlertOver = this.todoService.problemOver;
   }
 
   localizate(){
