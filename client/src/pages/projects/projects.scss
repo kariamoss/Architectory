@@ -13,6 +13,7 @@ page-projects {
         display: inline-block;
         text-align: center;
         max-width: 500px;
+        max-height: 300px;
     }
     .card-title {
         position: absolute;
@@ -21,12 +22,21 @@ page-projects {
         width: 100%;
         font-weight: bold;
         color: #fff;
+        text-shadow: 1px 1px 1px #000;
     }
     .card-subtitle {
-        font-size: 1.0em;
+        font-size: 1.5em;
         position: absolute;
-        top: 52%;
+        top: 62%;
         width: 100%;
-        color: #fff;
+        color: #F53D3D;
+        text-shadow: 1px 1px 1px #000;
+    }
+
+    .disabled,
+    .disabled:active{
+        border: 1px solid #999999;
+        background-color: #cccccc;
+        color: #666666;
     }
 }

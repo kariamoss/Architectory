@@ -1,3 +1,4 @@
+import { LocalisationService } from './../services/localisationService';
 import { ProjectsPage } from './../pages/projects/projects';
 import { TodoService } from './../services/todosService';
 import { WebsocketService } from './../services/webSocket';
@@ -51,6 +52,7 @@ import { HtmlUtilsService } from '../services/htmlUtils';
     HtmlUtilsService,
     TodoService,
     Geolocation,
+    LocalisationService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

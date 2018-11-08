@@ -1,3 +1,4 @@
+import { LocalisationService } from './../../services/localisationService';
 import { ArchitectPage } from './../architect/architect';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -16,10 +17,42 @@ import { Geolocation } from '@ionic-native/geolocation';
   templateUrl: 'projects.html',
 })
 export class ProjectsPage {
-  items: Array<{ title: string, image: string, codePage: string, latitude: number, longitude: number }>;
+  items: Array<{ title: string, image: string, codePage: string, latitude: number, longitude: number, 
+    distance?: number, problem?: string }>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private geolocation: Geolocation) {
+  canUseLocalisation = false;
+  useLocalisation: boolean = true;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private localisationService: LocalisationService) {
     this.items = [
+      {
+        title: 'Rénovation Ascenseurs Nord Tour Eiffel',
+        image: 'https://www.rfr.fr/sites/default/files/styles/projet_full_carousel/public/2017-10/10230292_ASC%20TOUR%20EIFFEIL_existant%203%20%C2%A9%20RFR.jpg',
+        codePage: 'Eiffel',
+        latitude: 48.858260,
+        longitude: 2.294499
+      },
+      {
+        title: 'Rénovation Ascenseurs Est Tour Eiffel',
+        image: 'https://www.rfr.fr/sites/default/files/styles/projet_full_carousel/public/2017-10/10230292_ASC%20TOUR%20EIFFEIL_existant%203%20%C2%A9%20RFR.jpg',
+        codePage: 'Eiffel2',
+        latitude: 48.858260,
+        longitude: 2.294499
+      },
+      {
+        title: 'Rénovation Ascenseurs Ouest Tour Eiffel',
+        image: 'https://www.rfr.fr/sites/default/files/styles/projet_full_carousel/public/2017-10/10230292_ASC%20TOUR%20EIFFEIL_existant%203%20%C2%A9%20RFR.jpg',
+        codePage: 'Eiffel3',
+        latitude: 48.858260,
+        longitude: 2.294499
+      },
+      {
+        title: 'Rénovation Ascenseurs Sud Tour Eiffel',
+        image: 'https://www.rfr.fr/sites/default/files/styles/projet_full_carousel/public/2017-10/10230292_ASC%20TOUR%20EIFFEIL_existant%203%20%C2%A9%20RFR.jpg',
+        codePage: 'Eiffel4',
+        latitude: 48.858260,
+        longitude: 2.294499
+      },
       {
         title: 'Rénovation Polytech',
         image: 'https://cdn.static01.nicematin.com/media/npo/1440w/2017/12/fv4a1357.jpg',
@@ -28,34 +61,56 @@ export class ProjectsPage {
         longitude: 7.0718865
       },
       {
-        title: 'Construction maison bois',
+        title: 'Construction Maison en Bois',
         image: 'https://www.travauxbricolage.fr/wp-content/uploads/2014/09/devis-construction-maison-bois.jpg',
         codePage: 'Maison',
         latitude: 43.5878445,
-        longitude: 7.0720335
+        longitude: 7.0720335,
+        problem: 'Manque de matériaux'
       }
-    ]
+    ];
   }
-
   ngOnInit() {
-    this.localizate();
+    this.canUseLocalisation = this.localisationService.canUseLocalisation;
+    if (!this.canUseLocalisation) {
+      this.sortByName();
+      this.useLocalisation = false;
+    } else {
+      this.sortByDistance();
+    }
   }
 
   localizate(){
-    this.geolocation.getCurrentPosition().then((resp) => {
-      const latitude = resp.coords.latitude
-      const longitude = resp.coords.longitude
-      this.items.forEach( (item) => {
-        if (latitude >= item.latitude - 0.001 && latitude <= item.latitude + 0.001
-          && longitude >= item.longitude - 0.001 && longitude <= item.longitude + 0.001) {
-          this.itemTapped(item);
-          console.log(item.title);
-        }
-        console.log('Not passing : ' + item.title + '. With latitude ' + latitude + ' and longitude ' + longitude);
-      })
-     }).catch((error) => {
-       console.log('Error getting location', error);
-     });
+    this.useLocalisation = true;
+    this.items.forEach( (item) => {
+      item.distance = this.localisationService.distanceFromPos(item.latitude, item.longitude);
+    });
+    this.sortByDistance();
+  }
+
+  sortByDistance() {
+    this.items = this.items.sort( (obj1, obj2) => {
+      if(obj1.distance > obj2.distance) {
+        return 1;
+      }
+      if(obj1.distance < obj2.distance) {
+        return -1;
+      }
+      return 0;
+    })
+  }
+
+  sortByName() {
+    this.useLocalisation = false;
+    this.items = this.items.sort( (obj1, obj2) => {
+      if(obj1.title > obj2.title) {
+        return 1;
+      }
+      if(obj1.title < obj2.title) {
+        return -1;
+      }
+      return 0;
+    })
   }
 
   itemTapped(item) {

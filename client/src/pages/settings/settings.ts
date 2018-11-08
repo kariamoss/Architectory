@@ -43,7 +43,7 @@ export class SettingsPage {
         this.pseudo = 'desktop';
       }      
       
-      this.socket.emit('newClient', this.pseudo);
+      /*this.socket.emit('newClient', this.pseudo);
 
       this.socket.on('data', (data) => {
         console.log('Received : ' + data.task);
@@ -52,7 +52,7 @@ export class SettingsPage {
           this.global.set('theme', data.theme);
           this.theme = data.theme;
         }
-    }); 
+      }); */
 
     });
   }
@@ -67,6 +67,9 @@ export class SettingsPage {
     this.sensors.enableSensor("LIGHT");
 
     setInterval(() => {
+      if (this.light === -1) {
+        this.sensors.enableSensor("LIGHT");
+      }
       this.sensors.getState().then( (values) => {
         this.light = values[0];
         if (this.light < this.previousLight - 20 || this.light > this.previousLight + 20) {

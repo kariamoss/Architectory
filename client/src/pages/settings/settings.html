@@ -32,7 +32,7 @@
   </ion-list>
   <ion-item *ngIf="cordovaAvailable">
     <p *ngIf="light != -1">Luminosité actuelle : {{ light }}</p>
-    <p *ngIf="light == -1">Le capteur ne s'est pas lancé</p>
+    <p *ngIf="light == -1">Le capteur ne s'est pas lancé, tentative de relance...</p>
   </ion-item>
   <ion-item *ngIf="!cordovaAvailable">
     <p>Cordova n'est pas supporté</p>

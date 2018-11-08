@@ -7,7 +7,7 @@ export class WebsocketService {
   private socket;
 
   constructor() {
-  	this.socket = io('http://localhost:8080');
+  	//this.socket = io('http://localhost:8080');
   }
 
   getSocket(){
